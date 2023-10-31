@@ -1,0 +1,44 @@
+
+1. Design a java interface called Move
+   It contains one method:
+      void execute(ReversiModel model)
+
+2. Design a class called PutDiscMove that implements Move.
+   It has one constructor: PutDiscMove(int row, int col)
+
+3. Design a class called PassMove that implements Move.
+
+4. Design a Java interface called Player containing one methods:
+   Move getMove(ReversiModel model)
+    It accepts one parameter ReversiModel and returns a Move.
+
+5. Design a class called HumanPlayer that implements Player interface.
+   In its implementation of getMove, it may read input from keyboard and
+   returns corresponding Move.
+
+6.  Design a class called AIPlayer that implements Player interface.
+    In its implementation of getMove, it may use AI algorithm to return
+    the best Move that the algorithm thinks have better chance to win.
+
+7. Example code to player the game.
+   ReversiModel model = new ReversiModelImplementation();
+   model.startGame(6, Disc.white);
+   ReversiTextView reversiTextView = new ReversiTextView(model);
+   Player humanPlayer = new HumanPlayer();
+   Player aiPlayer = new AIPlayer();
+
+   int i=0;
+   while(!model.isGameOver()) {
+
+      Move move;
+      if(i % 2 == 0) {
+         move = humanPlayer.getMove(model);
+      }else{
+         move = aiPlayer.getMove(model);
+      }
+
+      move.execute(model);
+      System.out.println(reversiTextView);
+
+      i += 1;
+   }
